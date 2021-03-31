@@ -8,6 +8,7 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="cadastro">Cadastro</string>
     <string name="adicionar">Adicionar</string>
+    <string name="nome" />
     <string-array name="array_types">
         <item>Casa</item>
         <item>Trabalho</item>
