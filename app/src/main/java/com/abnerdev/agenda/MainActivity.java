@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.abnerdev.agenda.Services.UserServices;
 
@@ -51,13 +50,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             title.setText(auth);
         }
-
-
     }
 
     public void ButtonSignIn(View view) {
-        Intent intent = new Intent(MainActivity.this,
-                SignIn.class);
+        Intent intent = new Intent(MainActivity.this, ListContact.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
