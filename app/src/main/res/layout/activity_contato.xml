@@ -28,12 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:hint="Endereço"
+        android:hint="@string/endere_o"
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="@+id/inputContactName"
         app:layout_constraintStart_toStartOf="@+id/inputContactName"
-        app:layout_constraintTop_toBottomOf="@+id/inputContactName" />
+        app:layout_constraintTop_toBottomOf="@+id/inputContactName"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/inputContactPhone"
@@ -41,11 +42,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:hint="Phone"
+        android:hint="@string/phone"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="@+id/inputContactAddress"
         app:layout_constraintStart_toStartOf="@+id/inputContactAddress"
-        app:layout_constraintTop_toBottomOf="@+id/inputContactAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/inputContactAddress"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/textView3"
@@ -53,7 +55,7 @@
         android:layout_height="27dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Endereço"
+        android:text="@string/endere_o"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputContactAddress"
@@ -68,8 +70,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/roboto_medium"
-        android:hint="Telefone"
-        android:text="Telefone"
+        android:hint="@string/telefone"
+        android:text="@string/phone"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputContactPhone"
         app:layout_constraintEnd_toStartOf="@+id/inputContactPhone"
@@ -82,7 +84,7 @@
         android:layout_height="28dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Tipo"
+        android:text="@string/tipo"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/SpinnerContactType"
         app:layout_constraintEnd_toStartOf="@+id/SpinnerContactType"
@@ -96,11 +98,12 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:hint="Nome"
+        android:hint="@string/nome"
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleContact" />
+        app:layout_constraintTop_toBottomOf="@+id/titleContact"
+        android:autofillHints="" />
 
     <Spinner
         android:id="@+id/SpinnerContactType"
@@ -119,7 +122,7 @@
         android:layout_marginTop="60dp"
         android:background="#00BCD4"
         android:onClick="SaveContact"
-        android:text="Salvar"
+        android:text="@string/salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Criar contato"
+        android:text="@string/criar_contato"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
