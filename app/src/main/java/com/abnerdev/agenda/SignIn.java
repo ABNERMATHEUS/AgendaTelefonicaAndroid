@@ -1,6 +1,5 @@
 package com.abnerdev.agenda;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 
 import com.abnerdev.agenda.Model.User;
 import com.abnerdev.agenda.Services.UserServices;
+import com.abnerdev.agenda.Utils.Utils;
 
 public class SignIn extends AppCompatActivity {
 
@@ -34,8 +34,9 @@ public class SignIn extends AppCompatActivity {
         UserServices userServices = new UserServices();
         userServices.create(user);
         Toast.makeText(SignIn.this,"Cadastrado com sucesso!",Toast.LENGTH_LONG);
-        Intent intent = new Intent(SignIn.this,MainActivity.class);
-        startActivity(intent);
+        Utils.Route_Start(SignIn.this,MainActivity.class,null);
+        //Intent intent = new Intent(SignIn.this,MainActivity.class);
+        //startActivity(intent);
     }
 
 

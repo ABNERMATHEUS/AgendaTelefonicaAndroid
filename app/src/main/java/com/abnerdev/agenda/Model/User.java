@@ -7,20 +7,20 @@ public class User {
     private String email;
     private String password;
     private PhoneBook phoneBook;
-    private UUID uuid;
+    private String uuid;
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
         this.phoneBook = new PhoneBook();
-        uuid = UUID.randomUUID();
+        uuid = UUID.randomUUID().toString();
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

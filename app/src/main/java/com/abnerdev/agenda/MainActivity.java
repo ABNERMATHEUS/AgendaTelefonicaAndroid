@@ -1,7 +1,6 @@
 package com.abnerdev.agenda;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.abnerdev.agenda.Services.UserServices;
+import com.abnerdev.agenda.Utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,13 +48,11 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.create().show();
         } else {
-            title.setText(auth);
+            Utils.Route_Start(MainActivity.this,ListContact.class,auth);
         }
     }
 
     public void ButtonSignIn(View view) {
-        Intent intent = new Intent(MainActivity.this, ListContact.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(intent);
+        Utils.Route_Start(MainActivity.this,SignIn.class,null);
     }
 }

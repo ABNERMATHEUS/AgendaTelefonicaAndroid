@@ -1,5 +1,6 @@
 package com.abnerdev.agenda.Repositories;
 
+import com.abnerdev.agenda.Model.Contact;
 import com.abnerdev.agenda.Model.User;
 import com.abnerdev.agenda.Repositories.Contracts.IUserRepositories;
 
@@ -11,6 +12,11 @@ public class UserRepositories implements IUserRepositories {
     private static UserRepositories instance = new UserRepositories();
 
     private ArrayList<User> users = new ArrayList<User>();
+
+
+    public static  UserRepositories getInstance(){
+        return instance;
+    }
 
     private UserRepositories() {
         this.users = users;
@@ -39,11 +45,28 @@ public class UserRepositories implements IUserRepositories {
         return null;
     }
 
-    public static  UserRepositories getInstance(){
-        return instance;
+    @Override
+    public void CreateContact(String uuid, Contact contact) {
+        User user = FindByUser(uuid);
+        user.getPhoneBook().addContat(contact);
     }
 
+    @Override
+    public void UpdateContact(String uuid, Contact contact) {
+        User user = FindByUser(uuid);
+        user.getPhoneBook().UpdateContact(contact);
+    }
 
+    @Override
+    public Contact FindByContact(String uuid, String uuid_contact) {
+        User user = FindByUser(uuid);
+        for(Contact contact: user.getPhoneBook().getContato()){
+            if(contact.getUuid().equals(uuid_contact)){
+                return contact;
+            }
+        }
+        return null;
+    }
 
 
 }

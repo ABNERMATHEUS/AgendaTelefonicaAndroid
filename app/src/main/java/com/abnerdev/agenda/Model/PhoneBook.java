@@ -13,6 +13,18 @@ public class PhoneBook {
         contacts.add(contact);
     }
 
+    public void UpdateContact(Contact c){
+
+        for(Contact contact: contacts){
+            if(contact.getUuid().equals(c.getUuid())){
+                contacts.remove(contact);
+                contacts.add(c);
+                break;
+            }
+        }
+
+    }
+
     public ArrayList<Contact> getContato() {
         return contacts;
     }
