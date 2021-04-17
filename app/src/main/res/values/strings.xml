@@ -13,9 +13,6 @@
     <string name="endere_o">Endereço</string>
     <string name="salvar">Salvar</string>
     <string name="criar_contato">Criar contato</string>
-    <string name="phone">Phone</string>
-    <string name="nome">Nome</string>
-    <string name="endere_o">Endereço</string>
     <string name="telefone">Telefone</string>
     <string name="tipo">Tipo</string>
     <string-array name="array_types">

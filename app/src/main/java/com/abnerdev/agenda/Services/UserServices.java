@@ -8,14 +8,18 @@ import com.abnerdev.agenda.Services.Contrats.IUserServices;
 public class UserServices  implements IUserServices {
 
     private UserRepositories userRepositories;
+    private static UserServices instance = new UserServices();
 
-    public UserServices() {
+    public static  UserServices getInstance(){
+        return instance;
+    }
+    private UserServices() {
         userRepositories = UserRepositories.getInstance();
     }
 
     @Override
-    public String autentication(String email, String password) {
-        return userRepositories.Exist(email,password);
+    public boolean autentication(String email, String password) {
+        return  userRepositories.Exist(email,password);
     }
 
     @Override
@@ -24,8 +28,8 @@ public class UserServices  implements IUserServices {
     }
 
     @Override
-    public User FindById(String uuid) {
-        return userRepositories.FindByUser(uuid);
+    public User FindById() {
+        return userRepositories.FindByUser();
     }
 
 

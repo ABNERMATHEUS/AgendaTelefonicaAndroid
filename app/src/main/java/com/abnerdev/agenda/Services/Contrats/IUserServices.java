@@ -6,11 +6,11 @@ import java.util.UUID;
 
 public interface IUserServices {
 
-    public String autentication(String email, String password);
+    public boolean autentication(String email, String password);
 
     public void create(User user);
 
-    public User FindById(String uuid);
+    public User FindById();
 
 
 }

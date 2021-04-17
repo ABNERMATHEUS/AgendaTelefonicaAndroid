@@ -7,16 +7,6 @@
     tools:context=".ListContact">
 
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="383dp"
-        android:layout_height="423dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="193dp"
@@ -40,5 +30,16 @@
         android:text="@string/adicionar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="361dp"
+        android:layout_height="511dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.038" />
 
 </android.support.constraint.ConstraintLayout>

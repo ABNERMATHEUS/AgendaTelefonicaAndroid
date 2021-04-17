@@ -8,16 +8,20 @@ import com.abnerdev.agenda.Services.Contrats.IContactServices;
 public class ContactServices implements IContactServices {
 
     private UserRepositories userRepositories;
+    private static ContactServices instance = new ContactServices();
 
-    public ContactServices() {
+    public static ContactServices getInstance(){
+        return instance;
+    }
+    private ContactServices() {
         this.userRepositories = UserRepositories.getInstance();
     }
 
     @Override
-    public boolean Create(String Id_user, Contact contact) {
+    public boolean Create(Contact contact) {
 
         try{
-        userRepositories.CreateContact(Id_user,contact);
+        userRepositories.CreateContact(contact);
         }catch (Exception e){
             return  false;
         }
@@ -25,9 +29,9 @@ public class ContactServices implements IContactServices {
     }
 
     @Override
-    public boolean Update(String Id_user,Contact contact) {
+    public boolean Update(Contact contact) {
         try{
-            userRepositories.UpdateContact(Id_user,contact);
+            userRepositories.UpdateContact(contact);
         }catch (Exception e){
             return false;
         }
@@ -35,7 +39,12 @@ public class ContactServices implements IContactServices {
     }
 
     @Override
-    public Contact FindById(String Id_user, String Id_contact) {
-        return userRepositories.FindByContact(Id_user,Id_contact);
+    public Contact FindById(String Id_contact) {
+        return userRepositories.FindByContact(Id_contact);
+    }
+
+    @Override
+    public int CountContact() {
+        return UserRepositories.getInstance().CountContact();
     }
 }

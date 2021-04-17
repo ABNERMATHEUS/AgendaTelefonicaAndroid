@@ -3,12 +3,19 @@ package com.abnerdev.agenda;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.abnerdev.agenda.ArrayAdapter.ClickListener;
+import com.abnerdev.agenda.ArrayAdapter.ContactArrayAdapter;
 import com.abnerdev.agenda.Model.Contact;
+import com.abnerdev.agenda.Repositories.UserRepositories;
+import com.abnerdev.agenda.Services.ContactServices;
 import com.abnerdev.agenda.Services.UserServices;
 import com.abnerdev.agenda.Utils.Utils;
 
@@ -18,34 +25,42 @@ public class ListContact extends AppCompatActivity {
 
 
     String Id_user;
-    ListView listView;
+    RecyclerView listView;
+    ContactArrayAdapter contactArrayAdapter;
     ArrayList<String> contactsString;
     ArrayList<Contact>  contacts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_contact);
-        Id_user = getIntent().getStringExtra("ID_USER");
-        listView = findViewById(R.id.listView);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setSelector(android.R.color.darker_gray);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String Id_contact = contacts.get(position).getUuid();
-                Intent intent = new Intent(ListContact.this,Contato.class);
-                intent.putExtra("ID_USER",Id_user).putExtra("ID_CONTACT",Id_contact);
-                startActivity(intent);
-            }
-        });
-        loadList();
+        Id_user = UserRepositories.getInstance().getID_USER();
+        listView = findViewById(R.id.recycleView);
+        contactArrayAdapter = new ContactArrayAdapter();
+        listView.setAdapter(contactArrayAdapter);
+        listView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(ListContact.this,DividerItemDecoration.VERTICAL);
+        listView.addItemDecoration(itemDecoration);
+        listView.setOnClickListener( new ClickListener());
+
+
     }
 
     public void AddContact(View view){
-        Utils.Route_Start(ListContact.this,Contato.class,Id_user);
+        /*ContactServices contactServices = new ContactServices();
+        contactServices.Create(UserRepositories.getInstance().getID_USER(),
+                new Contact("aa","419999","4444444","Casa"));*/
+        Utils.Route_Start(ListContact.this,Contato.class);
+        contactArrayAdapter.notifyDataSetChanged(); // Notificar, para atualizar a lista.
+
     }
 
-    void loadList(){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        contactArrayAdapter.notifyDataSetChanged();
+    }
+
+    /*void loadList(){
         UserServices userServices = new UserServices();
         contacts = userServices.FindById(Id_user).getPhoneBook().getContato();
         contactsString = new ArrayList<String>();
@@ -60,9 +75,9 @@ public class ListContact extends AppCompatActivity {
                 contactsString
         );
 
-        listView.setAdapter(adapter);
 
-    }
+
+    }*/
 
 
 }

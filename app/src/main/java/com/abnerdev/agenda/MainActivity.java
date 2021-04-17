@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.abnerdev.agenda.Repositories.UserRepositories;
 import com.abnerdev.agenda.Services.UserServices;
 import com.abnerdev.agenda.Utils.Utils;
 
@@ -29,14 +30,15 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.idEmailLogin);
         password = findViewById(R.id.idPasswordLogin);
         title = findViewById(R.id.titleLogin);
+
     }
 
     public void AuthenticationLogin(View view) {
         String emailValue = email.getText().toString();
         String passwordValue = password.getText().toString();
-        UserServices userServices = new UserServices();
-        String auth = userServices.autentication(emailValue, passwordValue);
-        if (auth == null) {
+        UserServices userServices = UserServices.getInstance();
+         boolean auth = userServices.autentication(emailValue, passwordValue);
+        if (!auth) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("E-mail ou senha incorreta!");
             builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -48,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.create().show();
         } else {
-            Utils.Route_Start(MainActivity.this,ListContact.class,auth);
+
+            Utils.Route_Start(MainActivity.this,ListContact.class);
         }
     }
 
     public void ButtonSignIn(View view) {
-        Utils.Route_Start(MainActivity.this,SignIn.class,null);
+        Utils.Route_Start(MainActivity.this,SignIn.class);
     }
 }
