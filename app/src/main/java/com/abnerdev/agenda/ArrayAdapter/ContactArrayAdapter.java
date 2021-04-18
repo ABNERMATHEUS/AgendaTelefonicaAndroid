@@ -18,7 +18,7 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
 
     private static ClickListener clickListener;
 
-    public static void setClickListener(ClickListener clickListener) {
+    public void setClickListener(ClickListener clickListener) {
         ContactArrayAdapter.clickListener = clickListener;
     }
 
@@ -70,6 +70,14 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
                         return;
                     else
                         clickListener.onItemClick(getAdapterPosition(),view);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(clickListener == null)
+                        return  false;
+                    return clickListener.onItemLongClick(getAdapterPosition(),v);
                 }
             });
 

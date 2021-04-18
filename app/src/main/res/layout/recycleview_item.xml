@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#A62D2D"
+    android:background="#009688"
     android:orientation="horizontal">
 
     <Space
@@ -17,6 +17,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/nome"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -33,6 +34,7 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@android:string/untitled"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="24sp" />
 
     <Space

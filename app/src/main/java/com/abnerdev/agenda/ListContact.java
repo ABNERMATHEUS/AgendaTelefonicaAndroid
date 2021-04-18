@@ -7,11 +7,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import com.abnerdev.agenda.ArrayAdapter.ClickListener;
 import com.abnerdev.agenda.ArrayAdapter.ContactArrayAdapter;
 import com.abnerdev.agenda.Model.Contact;
 import com.abnerdev.agenda.Repositories.UserRepositories;
@@ -40,8 +36,20 @@ public class ListContact extends AppCompatActivity {
         listView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(ListContact.this,DividerItemDecoration.VERTICAL);
         listView.addItemDecoration(itemDecoration);
-        listView.setOnClickListener( new ClickListener());
+        contactArrayAdapter.setClickListener(new ContactArrayAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                String Id_contact = UserServices.getInstance().FindById().getPhoneBook().getContato().get(position).getUuid();
+                Intent intent = new Intent(ListContact.this,Contato.class);
+                intent.putExtra("ID_CONTACT",Id_contact);
+                startActivity(intent);
+            }
 
+            @Override
+            public boolean onItemLongClick(int position, View view) {
+                return false;
+            }
+        });
 
     }
 
