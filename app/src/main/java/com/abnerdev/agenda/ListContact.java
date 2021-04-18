@@ -39,6 +39,7 @@ public class ListContact extends AppCompatActivity {
         listView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(ListContact.this,DividerItemDecoration.VERTICAL);
         listView.addItemDecoration(itemDecoration);
+        contactArrayAdapter.notifyDataSetChanged();
         contactArrayAdapter.setClickListener(new ContactArrayAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View view) {
@@ -61,7 +62,7 @@ public class ListContact extends AppCompatActivity {
         contactServices.Create(UserRepositories.getInstance().getID_USER(),
                 new Contact("aa","419999","4444444","Casa"));*/
         Utils.Route_Start(ListContact.this,Contato.class);
-        contactArrayAdapter.notifyDataSetChanged(); // Notificar, para atualizar a lista.
+        // Notificar, para atualizar a lista.
 
     }
 

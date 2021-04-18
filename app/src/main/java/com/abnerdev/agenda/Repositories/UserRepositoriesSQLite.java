@@ -22,7 +22,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         this.context = context;
     }
 
-    private String ID_USER;
+    private static  String ID_USER;
 
 
 
@@ -59,7 +59,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         Cursor cursor = database.rawQuery(query,null);
 
 
-        if(cursor.moveToFirst()){
+        if(cursor.moveToFirst() ){
             setID_USER(cursor.getString(cursor.getColumnIndex(dataContext.COL_ID)));
             database.close();
             return true;
@@ -76,7 +76,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
 
         SQLiteDatabase database =  dataContext.getReadableDatabase();
         String queryUser  = "SELECT * FROM "+dataContext.TABELA_USUARIOS+" WHERE "+dataContext.COL_ID+" = '"+getID_USER()+"'";
-        String queryContact  = "SELECT NAME FROM "+dataContext.TABLEA_CONTATOS+" WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"'";
+        String queryContact  = "SELECT * FROM "+dataContext.TABLEA_CONTATOS+" WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"'";
 
         Cursor cursor = database.rawQuery(queryUser,null);
         User user = new User();
@@ -94,7 +94,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
                 contact.setUuid(cursor.getString(cursor.getColumnIndex(dataContext.COL_ID)));
                 contact.setName(cursor.getString(cursor.getColumnIndex(dataContext.COL_NAME)));
                 contact.setAddress(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
-                contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
+                contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_PHONE)));
                 user.getPhoneBook().addContat(contact);
             }while (cursor.moveToNext());
         }
@@ -112,6 +112,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         contentValues.put(dataContext.COL_NAME,contact.getName());
         contentValues.put(dataContext.COL_ADDRESS,contact.getAddress());
         contentValues.put(dataContext.COL_PHONE,contact.getPhone());
+        contentValues.put(dataContext.COL_ID_USER,getID_USER());
         database.insert(dataContext.TABLEA_CONTATOS,null,contentValues);
         database.close();
     }
@@ -124,17 +125,19 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         String updateQuery = "UPDATE "+dataContext.TABLEA_CONTATOS+" SET " +
                 dataContext.COL_NAME+" = '"+contact.getName()+"'," +
                 dataContext.COL_ADDRESS+" = '"+contact.getAddress()+"',"+
-                dataContext.COL_PHONE+" = '"+contact.getPhone()+"',"+
-                "WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"'";
+                dataContext.COL_PHONE+" = '"+contact.getPhone()+"' "+
+                "WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"'" +
+                " AND "+dataContext.COL_ID+" = '"+contact.getUuid()+"'";
 
         database.execSQL(updateQuery);
+        database.close();
     }
 
     @Override
     public Contact FindByContact(String uuid_contact) {
 
         SQLiteDatabase database =  dataContext.getReadableDatabase();
-        String queryContact  = "SELECT NAME FROM "+dataContext.TABLEA_CONTATOS+" WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"' AND "+dataContext.COL_ID+" = '"+uuid_contact+"'";
+        String queryContact  = "SELECT * FROM "+dataContext.TABLEA_CONTATOS+" WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"' AND "+dataContext.COL_ID+" = '"+uuid_contact+"'";
         Cursor cursor = database.rawQuery(queryContact,null);
         if(cursor.moveToFirst()){
             Contact contact = new Contact();
@@ -142,9 +145,10 @@ public class UserRepositoriesSQLite implements IUserRepositories {
             contact.setName(cursor.getString(cursor.getColumnIndex(dataContext.COL_NAME)));
             contact.setAddress(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
             contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
+            database.close();
             return contact;
         }
-
+        database.close();
         return null;
     }
 
