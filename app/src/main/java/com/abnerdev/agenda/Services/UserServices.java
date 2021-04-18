@@ -1,20 +1,27 @@
 package com.abnerdev.agenda.Services;
 
+import android.content.Context;
+
 import com.abnerdev.agenda.Model.User;
 import com.abnerdev.agenda.Repositories.UserRepositories;
+import com.abnerdev.agenda.Repositories.UserRepositoriesSQLite;
 import com.abnerdev.agenda.Services.Contrats.IUserServices;
 
 
 public class UserServices  implements IUserServices {
 
-    private UserRepositories userRepositories;
-    private static UserServices instance = new UserServices();
+    private UserRepositoriesSQLite userRepositories;
+    private static UserServices instance ;
 
-    public static  UserServices getInstance(){
+    public static  UserServices getInstance(Context context){
+        if(instance ==null){
+            instance = new UserServices(context);
+        }
+        instance.userRepositories.setContext(context);
         return instance;
     }
-    private UserServices() {
-        userRepositories = UserRepositories.getInstance();
+    private UserServices(Context context) {
+        userRepositories = UserRepositoriesSQLite.getInstance(context);
     }
 
     @Override

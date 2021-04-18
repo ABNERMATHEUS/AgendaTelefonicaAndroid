@@ -16,6 +16,10 @@ public class User {
         uuid = UUID.randomUUID().toString();
     }
 
+    public User() {
+        this.phoneBook = new PhoneBook();
+    }
+
     public String getUuid() {
         return uuid;
     }

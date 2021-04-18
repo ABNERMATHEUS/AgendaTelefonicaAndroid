@@ -14,14 +14,6 @@ public class UserRepositories implements IUserRepositories {
     private String ID_USER;
     private ArrayList<User> users = new ArrayList<User>();
 
-    public String getID_USER() {
-        return ID_USER;
-    }
-
-    public void setID_USER(String ID_USER) {
-        this.ID_USER = ID_USER;
-    }
-
     public static  UserRepositories getInstance(){
         return instance;
     }
@@ -42,9 +34,7 @@ public class UserRepositories implements IUserRepositories {
                 this.setID_USER(user.getUuid().toString());
                 return true;
             }
-
         }
-
         return false;
     }
 
@@ -84,6 +74,16 @@ public class UserRepositories implements IUserRepositories {
     public int CountContact() {
         return FindByUser().getPhoneBook().getContato().size();
     }
+
+
+    public String getID_USER() {
+        return ID_USER;
+    }
+
+    public void setID_USER(String ID_USER) {
+        this.ID_USER = ID_USER;
+    }
+
 
 
 }

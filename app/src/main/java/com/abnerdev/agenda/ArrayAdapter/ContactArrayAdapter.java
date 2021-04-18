@@ -17,11 +17,14 @@ import com.abnerdev.agenda.Services.UserServices;
 public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapter.ViewHolder> {
 
     private static ClickListener clickListener;
-
+    private  Context context;
     public void setClickListener(ClickListener clickListener) {
         ContactArrayAdapter.clickListener = clickListener;
     }
 
+    public ContactArrayAdapter(Context context) {
+        this.context = context;
+    }
 
     public interface ClickListener {
 
@@ -42,7 +45,7 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
     @Override
     public void onBindViewHolder(@NonNull ContactArrayAdapter.ViewHolder viewHolder, int i) { //QUANDO ELE APARECER PARA USUÁRIO, IRÁ CHAMAR ESSA FUNÇÃO
         //Quando mostrar o item para gente
-        Contact contact = UserServices.getInstance().FindById().getPhoneBook().getContato().get(i);
+        Contact contact = UserServices.getInstance(context).FindById().getPhoneBook().getContato().get(i);
         viewHolder.nameContact.setText(contact.getName());
         viewHolder.numberPhone.setText(contact.getPhone());
 
@@ -50,7 +53,7 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
 
     @Override
     public int getItemCount() { //NÚMERO DE ITEM QUE TEMOS EM TELA
-        return ContactServices.getInstance().CountContact();
+        return ContactServices.getInstance(this.context).CountContact();
     }
 
 

@@ -47,7 +47,7 @@ public class Contato extends AppCompatActivity {
         String phoneValue = phone.getText().toString();
         String typeValue = type.getSelectedItem().toString();
         Contact contact = new Contact(nameValue,addressValue,phoneValue,typeValue);
-        ContactServices contactServices = ContactServices.getInstance();
+        ContactServices contactServices = ContactServices.getInstance(this.getApplicationContext());
         boolean status;
         if(id_contact !=null){
             contact.setUuid(id_contact);
@@ -73,7 +73,7 @@ public class Contato extends AppCompatActivity {
     void loadContact(){
         if(id_contact != null){
          title.setText("Atualizar contato");
-        ContactServices contactServices = ContactServices.getInstance();
+        ContactServices contactServices = ContactServices.getInstance(this.getApplicationContext());
         Contact contact = contactServices.FindById(id_contact);
         name.setText(contact.getName());
         address.setText(contact.getAddress());

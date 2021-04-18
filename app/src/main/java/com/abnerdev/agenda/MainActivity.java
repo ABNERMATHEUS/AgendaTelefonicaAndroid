@@ -30,13 +30,12 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.idEmailLogin);
         password = findViewById(R.id.idPasswordLogin);
         title = findViewById(R.id.titleLogin);
-
     }
 
     public void AuthenticationLogin(View view) {
         String emailValue = email.getText().toString();
         String passwordValue = password.getText().toString();
-        UserServices userServices = UserServices.getInstance();
+        UserServices userServices = UserServices.getInstance(this.getApplicationContext());
          boolean auth = userServices.autentication(emailValue, passwordValue);
         if (!auth) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

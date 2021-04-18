@@ -1,5 +1,6 @@
 package com.abnerdev.agenda;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,13 +26,15 @@ public class ListContact extends AppCompatActivity {
     ContactArrayAdapter contactArrayAdapter;
     ArrayList<String> contactsString;
     ArrayList<Contact>  contacts;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_contact);
         Id_user = UserRepositories.getInstance().getID_USER();
         listView = findViewById(R.id.recycleView);
-        contactArrayAdapter = new ContactArrayAdapter();
+        context = this.getApplicationContext();
+        contactArrayAdapter = new ContactArrayAdapter(context);
         listView.setAdapter(contactArrayAdapter);
         listView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(ListContact.this,DividerItemDecoration.VERTICAL);
@@ -39,7 +42,7 @@ public class ListContact extends AppCompatActivity {
         contactArrayAdapter.setClickListener(new ContactArrayAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View view) {
-                String Id_contact = UserServices.getInstance().FindById().getPhoneBook().getContato().get(position).getUuid();
+                String Id_contact = UserServices.getInstance(context).FindById().getPhoneBook().getContato().get(position).getUuid();
                 Intent intent = new Intent(ListContact.this,Contato.class);
                 intent.putExtra("ID_CONTACT",Id_contact);
                 startActivity(intent);

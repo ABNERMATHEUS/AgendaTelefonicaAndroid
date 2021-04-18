@@ -1,20 +1,30 @@
 package com.abnerdev.agenda.Services;
 
+import android.content.Context;
+
 import com.abnerdev.agenda.Model.Contact;
 import com.abnerdev.agenda.Model.User;
 import com.abnerdev.agenda.Repositories.UserRepositories;
+import com.abnerdev.agenda.Repositories.UserRepositoriesSQLite;
 import com.abnerdev.agenda.Services.Contrats.IContactServices;
 
 public class ContactServices implements IContactServices {
 
-    private UserRepositories userRepositories;
-    private static ContactServices instance = new ContactServices();
+    private UserRepositoriesSQLite userRepositories;
+    private static ContactServices instance;
 
-    public static ContactServices getInstance(){
+    public static ContactServices getInstance(Context context)
+    {
+
+        if(instance == null){
+            instance = new ContactServices(context);
+        }
+        instance.userRepositories.setContext(context);
         return instance;
     }
-    private ContactServices() {
-        this.userRepositories = UserRepositories.getInstance();
+    private ContactServices(Context context) {
+
+        this.userRepositories = UserRepositoriesSQLite.getInstance(context);
     }
 
     @Override
@@ -45,6 +55,6 @@ public class ContactServices implements IContactServices {
 
     @Override
     public int CountContact() {
-        return UserRepositories.getInstance().CountContact();
+        return userRepositories.CountContact();
     }
 }

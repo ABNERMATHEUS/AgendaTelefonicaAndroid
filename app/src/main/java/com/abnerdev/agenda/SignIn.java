@@ -31,7 +31,7 @@ public class SignIn extends AppCompatActivity {
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
         User user = new User(email,password);
-        UserServices userServices = UserServices.getInstance();
+        UserServices userServices = UserServices.getInstance(this.getApplicationContext());
         userServices.create(user);
         Toast.makeText(SignIn.this,"Cadastrado com sucesso!",Toast.LENGTH_LONG);
         Utils.Route_Start(SignIn.this,MainActivity.class);

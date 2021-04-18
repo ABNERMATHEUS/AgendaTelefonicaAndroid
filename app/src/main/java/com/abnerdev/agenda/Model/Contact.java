@@ -21,6 +21,9 @@ public class Contact {
         Type = type;
     }
 
+    public Contact() {
+    }
+
     public String getUuid() {
         return uuid;
     }
