@@ -24,8 +24,6 @@ public class UserRepositoriesSQLite implements IUserRepositories {
 
     private static  String ID_USER;
 
-
-
     public static  UserRepositoriesSQLite getInstance(Context context){
 
         if(instance==null){
@@ -144,7 +142,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
             contact.setUuid(cursor.getString(cursor.getColumnIndex(dataContext.COL_ID)));
             contact.setName(cursor.getString(cursor.getColumnIndex(dataContext.COL_NAME)));
             contact.setAddress(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
-            contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
+            contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_PHONE)));
             database.close();
             return contact;
         }
