@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -36,7 +37,7 @@ public class ListContact extends AppCompatActivity {
         context = this.getApplicationContext();
         contactArrayAdapter = new ContactArrayAdapter(context);
         listView.setAdapter(contactArrayAdapter);
-        listView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setLayoutManager(new GridLayoutManager(this, 2));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(ListContact.this,DividerItemDecoration.VERTICAL);
         listView.addItemDecoration(itemDecoration);
         contactArrayAdapter.notifyDataSetChanged();
