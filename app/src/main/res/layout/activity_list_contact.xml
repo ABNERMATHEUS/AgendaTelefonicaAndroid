@@ -33,13 +33,22 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleView"
-        android:layout_width="361dp"
-        android:layout_height="511dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="369dp"
+        android:layout_height="469dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBarGrid" />
+
+    <SeekBar
+        android:id="@+id/seekBarGrid"
+        android:layout_width="363dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:max="2"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 </android.support.constraint.ConstraintLayout>

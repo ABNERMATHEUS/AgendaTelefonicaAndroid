@@ -15,6 +15,8 @@
     <string name="criar_contato">Criar contato</string>
     <string name="telefone">Telefone</string>
     <string name="tipo">Tipo</string>
+    <string name="foto_contato">Foto contato</string>
+    <string name="foto">Foto</string>
     <string-array name="array_types">
         <item>Casa</item>
         <item>Trabalho</item>
