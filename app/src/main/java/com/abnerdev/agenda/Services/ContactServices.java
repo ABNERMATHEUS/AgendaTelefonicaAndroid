@@ -19,7 +19,11 @@ public class ContactServices implements IContactServices {
         if(instance == null){
             instance = new ContactServices(context);
         }
-        instance.userRepositories.setContext(context);
+
+        else if(!instance.userRepositories.getContext().equals(context)){
+            instance.userRepositories.setContext(context);
+        }
+
         return instance;
     }
     private ContactServices(Context context) {
@@ -57,4 +61,10 @@ public class ContactServices implements IContactServices {
     public int CountContact() {
         return userRepositories.CountContact();
     }
+
+    @Override
+    public void Delete(String id_contact) {
+        userRepositories.DeleteContact(id_contact);
+    }
+
 }

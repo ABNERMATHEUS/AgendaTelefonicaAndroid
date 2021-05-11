@@ -9,12 +9,15 @@ import java.util.UUID;
 
 public class UserRepositories implements IUserRepositories {
 
-    private static UserRepositories instance = new UserRepositories();
+    private static UserRepositories instance;
 
     private String ID_USER;
     private ArrayList<User> users = new ArrayList<User>();
 
     public static  UserRepositories getInstance(){
+        if(instance==null){
+            return  new UserRepositories();
+        }
         return instance;
     }
 
@@ -73,6 +76,11 @@ public class UserRepositories implements IUserRepositories {
     @Override
     public int CountContact() {
         return FindByUser().getPhoneBook().getContato().size();
+    }
+
+    @Override
+    public void DeleteContact(String id_contact) {
+
     }
 
 

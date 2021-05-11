@@ -18,6 +18,10 @@ public class UserRepositoriesSQLite implements IUserRepositories {
     private static  UserRepositoriesSQLite instance;
     private Context context;
 
+    public Context getContext() {
+        return context;
+    }
+
     public void setContext(Context context) {
         this.context = context;
     }
@@ -29,7 +33,10 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         if(instance==null){
             return new UserRepositoriesSQLite(context);
         }
-        instance.setContext(context);
+        else if(!instance.getContext().equals(context)){
+            instance.setContext(context);
+        }
+
         return instance;
     }
 
@@ -161,6 +168,12 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         return FindByUser().getPhoneBook().getContato().size();
     }
 
+    @Override
+    public void DeleteContact(String id_contact) {
+        SQLiteDatabase database =  dataContext.getReadableDatabase();
+        String query = "DELETE FROM "+dataContext.TABLEA_CONTATOS+" WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"' AND "+dataContext.COL_ID+" = '"+id_contact+"'";
+        database.execSQL(query);
+    }
 
 
     public String getID_USER() {

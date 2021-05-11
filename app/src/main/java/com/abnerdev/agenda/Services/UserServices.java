@@ -17,7 +17,10 @@ public class UserServices  implements IUserServices {
         if(instance ==null){
             instance = new UserServices(context);
         }
-        instance.userRepositories.setContext(context);
+        else if(!instance.userRepositories.getContext().equals(context)){
+            instance.userRepositories.setContext(context);
+        }
+
         return instance;
     }
     private UserServices(Context context) {

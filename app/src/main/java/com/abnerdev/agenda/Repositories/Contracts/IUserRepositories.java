@@ -20,4 +20,6 @@ public interface IUserRepositories {
 
     public int CountContact();
 
+    public void DeleteContact(String id_contact);
+
 }

@@ -12,4 +12,5 @@ public interface IContactServices {
     public Contact FindById(String Id_contact);
 
     public int CountContact();
+    public void Delete(String id_contact);
 }

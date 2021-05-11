@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public void ButtonSignIn(View view) {
         Utils.Route_Start(MainActivity.this,SignIn.class);
     }

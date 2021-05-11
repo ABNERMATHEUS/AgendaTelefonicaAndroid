@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.abnerdev.agenda.Model.Contact;
 import com.abnerdev.agenda.Model.User;
 import com.abnerdev.agenda.Repositories.UserRepositories;
+import com.abnerdev.agenda.Repositories.UserRepositoriesSQLite;
 import com.abnerdev.agenda.Services.ContactServices;
 import com.abnerdev.agenda.Services.UserServices;
 import com.abnerdev.agenda.Utils.Utils;
@@ -59,7 +60,7 @@ public class Contato extends AppCompatActivity {
         phone = findViewById(R.id.inputContactPhone);
         type = findViewById(R.id.SpinnerContactType);
         title = findViewById(R.id.titleContact);
-        id_user = UserRepositories.getInstance().getID_USER();
+        id_user = UserRepositoriesSQLite.getInstance(this.getApplicationContext()).getID_USER();
         id_contact = getIntent().getStringExtra("ID_CONTACT");
         imageViewCamera = findViewById(R.id.imageContact);
 
@@ -101,6 +102,7 @@ public class Contato extends AppCompatActivity {
 
     void loadContact(){
         if(id_contact != null){
+
          title.setText("Atualizar contato");
         ContactServices contactServices = ContactServices.getInstance(this.getApplicationContext());
         Contact contact = contactServices.FindById(id_contact);
@@ -192,7 +194,8 @@ public class Contato extends AppCompatActivity {
     protected void onActivityResult(int requestCode,
                                     int resultCode,
                                     @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
+        super.onActivityResult(requestCode , resultCode, data);
         if(requestCode == CAMERA_INTENT_CODE){
             if(resultCode == RESULT_OK){
                 File file = new File(picturePath);

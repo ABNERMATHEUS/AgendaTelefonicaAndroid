@@ -1,7 +1,9 @@
 package com.abnerdev.agenda;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -10,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.abnerdev.agenda.ArrayAdapter.ContactArrayAdapter;
 import com.abnerdev.agenda.Model.Contact;
@@ -48,15 +51,34 @@ public class ListContact extends AppCompatActivity {
             @Override
             public void onItemClick(int position, View view) {
                 String Id_contact = UserServices.getInstance(context).FindById().getPhoneBook().getContato().get(position).getUuid();
-                Intent intent = new Intent(ListContact.this,Contato.class);
-                intent.putExtra("ID_CONTACT",Id_contact);
+                Intent intent = new Intent(ListContact.this, Contato.class);
+                intent.putExtra("ID_CONTACT", Id_contact);
                 startActivity(intent);
             }
 
             @Override
             public boolean onItemLongClick(int position, View view) {
-                return false;
+                String Id_contact = UserServices.getInstance(context).FindById().getPhoneBook().getContato().get(position).getUuid();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListContact.this);
+                builder.setTitle("Tem certeza que deseja excluir ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ContactServices.getInstance(context).Delete(Id_contact);
+                                contactArrayAdapter.notifyDataSetChanged();
+                            }
+                        });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+                builder.show();
+
+                return true;
             }
+
         });
 
         seekBar =  findViewById(R.id.seekBarGrid);
@@ -91,24 +113,6 @@ public class ListContact extends AppCompatActivity {
         contactArrayAdapter.notifyDataSetChanged();
     }
 
-    /*void loadList(){
-        UserServices userServices = new UserServices();
-        contacts = userServices.FindById(Id_user).getPhoneBook().getContato();
-        contactsString = new ArrayList<String>();
-
-        for(Contact c:contacts){
-            contactsString.add(c.getName());
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                ListContact.this,
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                contactsString
-        );
-
-
-
-    }*/
 
 
 }
