@@ -70,7 +70,7 @@ public class Contato extends AppCompatActivity {
         String addressValue = address.getText().toString();
         String phoneValue = phone.getText().toString();
         String typeValue = type.getSelectedItem().toString();
-        Contact contact = new Contact(nameValue,addressValue,phoneValue,typeValue);
+        Contact contact = new Contact(nameValue,addressValue,phoneValue,typeValue,picturePath);
         ContactServices contactServices = ContactServices.getInstance(this.getApplicationContext());
         boolean status;
         if(id_contact !=null){
@@ -102,6 +102,10 @@ public class Contato extends AppCompatActivity {
         name.setText(contact.getName());
         address.setText(contact.getAddress());
         phone.setText(contact.getPhone());
+        if(contact.getImage() != null){
+            File file = new File(contact.getImage());
+            imageViewCamera.setImageURI(Uri.fromFile(file));
+        }
 
         }
 

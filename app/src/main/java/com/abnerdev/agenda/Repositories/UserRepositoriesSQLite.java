@@ -118,13 +118,17 @@ public class UserRepositoriesSQLite implements IUserRepositories {
     @Override
     public void UpdateContact(Contact contact) {
 
+        String imagePath=null;
         SQLiteDatabase database =  dataContext.getWritableDatabase();
+        if(contact.getImage()!= null){
+            imagePath = "'"+contact.getImage()+"'";
+        }
 
         String updateQuery = "UPDATE "+dataContext.TABLEA_CONTATOS+" SET " +
                 dataContext.COL_NAME+" = '"+contact.getName()+"'," +
                 dataContext.COL_ADDRESS+" = '"+contact.getAddress()+"',"+
-                dataContext.COL_PHONE+" = '"+contact.getPhone()+"' "+
-                dataContext.COL_IMAGE+" = '"+contact.getImage()+"'"+
+                dataContext.COL_PHONE+" = '"+contact.getPhone()+"', "+
+                dataContext.COL_IMAGE+" = "+imagePath+" "+
                 "WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"'" +
                 " AND "+dataContext.COL_ID+" = '"+contact.getUuid()+"'";
 

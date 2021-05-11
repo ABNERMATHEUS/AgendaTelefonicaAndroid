@@ -35,7 +35,7 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageContatoList"
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
                 android:layout_weight="1"

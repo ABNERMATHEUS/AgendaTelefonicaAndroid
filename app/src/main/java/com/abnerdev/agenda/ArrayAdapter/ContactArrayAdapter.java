@@ -1,11 +1,13 @@
 package com.abnerdev.agenda.ArrayAdapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.abnerdev.agenda.Model.Contact;
@@ -13,6 +15,8 @@ import com.abnerdev.agenda.R;
 import com.abnerdev.agenda.Repositories.UserRepositories;
 import com.abnerdev.agenda.Services.ContactServices;
 import com.abnerdev.agenda.Services.UserServices;
+
+import java.io.File;
 
 public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapter.ViewHolder> {
 
@@ -48,6 +52,10 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
         Contact contact = UserServices.getInstance(context).FindById().getPhoneBook().getContato().get(i);
         viewHolder.nameContact.setText(contact.getName());
         viewHolder.numberPhone.setText(contact.getPhone());
+        if(contact.getImage()!= null){
+            File file = new File(contact.getImage());
+            viewHolder.imageView.setImageURI(Uri.fromFile(file));
+        }
 
     }
 
@@ -61,11 +69,13 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{ //CONTEUDO QUE IRÁ TER EM CADA ITEM
         TextView nameContact;
         TextView numberPhone;
+        ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameContact = itemView.findViewById(R.id.nameContact);
             numberPhone = itemView.findViewById(R.id.phoneContact);
+            imageView = itemView.findViewById(R.id.imageContatoList);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
