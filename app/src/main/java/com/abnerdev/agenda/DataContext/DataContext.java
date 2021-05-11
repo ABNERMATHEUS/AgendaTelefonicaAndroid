@@ -27,10 +27,11 @@ public class DataContext extends SQLiteOpenHelper {
     public static final String COL_PHONE = "phone";
     public static final String COL_TypeCONTACT = "typeContact";
     public static final String COL_ID_USER = "idUser";
+    public static final String COL_IMAGE = "image";
 
     private static final String CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS Users(id TEXT PRIMARY KEY , email VARCHAR, password VARCHAR)";
 
-    private static final String CREATE_TABLE_CONTACTS = "CREATE TABLE IF NOT EXISTS Contacts(id TEXT PRIMARY KEY , name VARCHAR, address VARCHAR, phone VARCHAR, typeContact int(3), idUser VARCHAR)";
+    private static final String CREATE_TABLE_CONTACTS = "CREATE TABLE IF NOT EXISTS Contacts(id TEXT PRIMARY KEY , name VARCHAR, address VARCHAR, phone VARCHAR, typeContact int(3), image VARCHAR, idUser VARCHAR)";
 
 
 

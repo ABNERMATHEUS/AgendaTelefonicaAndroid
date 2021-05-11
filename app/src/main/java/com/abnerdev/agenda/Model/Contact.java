@@ -13,12 +13,15 @@ public class Contact {
 
     private String Type;
 
-    public Contact(String name, String address, String phone,String type) {
+    private String Image;
+
+    public Contact(String name, String address, String phone,String type, String image) {
         Name = name;
         Address = address;
         Phone = phone;
         uuid = UUID.randomUUID().toString();
         Type = type;
+        Image = image;
     }
 
     public Contact() {
@@ -55,4 +58,8 @@ public class Contact {
     public void setPhone(String phone) {
         Phone = phone;
     }
+
+    public String getImage() { return Image; }
+
+    public void setImage(String image) { Image = image; }
 }

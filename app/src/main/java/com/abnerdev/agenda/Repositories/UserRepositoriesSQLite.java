@@ -84,7 +84,6 @@ public class UserRepositoriesSQLite implements IUserRepositories {
             user.setUuid(cursor.getString(cursor.getColumnIndex(dataContext.COL_ID)));
         }
 
-
         cursor = database.rawQuery(queryContact,null);
         if(cursor.moveToFirst()){
             do{
@@ -93,12 +92,12 @@ public class UserRepositoriesSQLite implements IUserRepositories {
                 contact.setName(cursor.getString(cursor.getColumnIndex(dataContext.COL_NAME)));
                 contact.setAddress(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
                 contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_PHONE)));
+                contact.setImage(cursor.getString(cursor.getColumnIndex(dataContext.COL_IMAGE)));
                 user.getPhoneBook().addContat(contact);
             }while (cursor.moveToNext());
         }
         database.close();
         return user;
-
     }
 
     @Override
@@ -111,6 +110,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
         contentValues.put(dataContext.COL_ADDRESS,contact.getAddress());
         contentValues.put(dataContext.COL_PHONE,contact.getPhone());
         contentValues.put(dataContext.COL_ID_USER,getID_USER());
+        contentValues.put(dataContext.COL_IMAGE,contact.getImage());
         database.insert(dataContext.TABLEA_CONTATOS,null,contentValues);
         database.close();
     }
@@ -124,6 +124,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
                 dataContext.COL_NAME+" = '"+contact.getName()+"'," +
                 dataContext.COL_ADDRESS+" = '"+contact.getAddress()+"',"+
                 dataContext.COL_PHONE+" = '"+contact.getPhone()+"' "+
+                dataContext.COL_IMAGE+" = '"+contact.getImage()+"'"+
                 "WHERE "+dataContext.COL_ID_USER+" = '"+getID_USER()+"'" +
                 " AND "+dataContext.COL_ID+" = '"+contact.getUuid()+"'";
 
@@ -143,6 +144,7 @@ public class UserRepositoriesSQLite implements IUserRepositories {
             contact.setName(cursor.getString(cursor.getColumnIndex(dataContext.COL_NAME)));
             contact.setAddress(cursor.getString(cursor.getColumnIndex(dataContext.COL_ADDRESS)));
             contact.setPhone(cursor.getString(cursor.getColumnIndex(dataContext.COL_PHONE)));
+            contact.setImage(cursor.getString(cursor.getColumnIndex(dataContext.COL_IMAGE)));
             database.close();
             return contact;
         }
