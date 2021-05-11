@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.SeekBar;
 
 import com.abnerdev.agenda.ArrayAdapter.ContactArrayAdapter;
 import com.abnerdev.agenda.Model.Contact;
@@ -28,6 +29,8 @@ public class ListContact extends AppCompatActivity {
     ArrayList<String> contactsString;
     ArrayList<Contact>  contacts;
     Context context;
+    SeekBar seekBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,21 @@ public class ListContact extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(int position, View view) {
                 return false;
+            }
+        });
+
+        seekBar =  findViewById(R.id.seekBarGrid);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { //Clica em cima da bolinha - chama essa função
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBarStop) { //Solta a bolinha - chama essa função
+                listView.setLayoutManager(new GridLayoutManager(ListContact.this,seekBarStop.getProgress()+1));
             }
         });
 

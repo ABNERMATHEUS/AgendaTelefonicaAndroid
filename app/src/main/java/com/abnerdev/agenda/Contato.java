@@ -48,6 +48,7 @@ public class Contato extends AppCompatActivity {
     static final int CAMERA_INTENT_CODE = 3001;
     String picturePath;
     ImageView imageViewCamera;
+    String pictureUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class Contato extends AppCompatActivity {
         id_user = UserRepositories.getInstance().getID_USER();
         id_contact = getIntent().getStringExtra("ID_CONTACT");
         imageViewCamera = findViewById(R.id.imageContact);
+
         loadContact();
     }
 
@@ -75,6 +77,9 @@ public class Contato extends AppCompatActivity {
         boolean status;
         if(id_contact !=null){
             contact.setUuid(id_contact);
+            if(picturePath == null){
+                contact.setImage(pictureUpdate);
+            }
             status = contactServices.Update(contact);
         }else{
             status = contactServices.Create(contact);
@@ -103,7 +108,8 @@ public class Contato extends AppCompatActivity {
         address.setText(contact.getAddress());
         phone.setText(contact.getPhone());
         if(contact.getImage() != null){
-            File file = new File(contact.getImage());
+            pictureUpdate = contact.getImage();
+            File file = new File(pictureUpdate);
             imageViewCamera.setImageURI(Uri.fromFile(file));
         }
 
@@ -161,9 +167,7 @@ public class Contato extends AppCompatActivity {
                 );
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
                 startActivityForResult(intent,CAMERA_INTENT_CODE);
-
             }
-
         }
     }
 
