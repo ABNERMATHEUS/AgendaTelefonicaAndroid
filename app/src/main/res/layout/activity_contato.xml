@@ -7,6 +7,18 @@
     tools:context=".Contato">
 
 
+    <ImageView
+        android:id="@+id/imageContact"
+        android:layout_width="96dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/foto_contato"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleContact"
+        app:srcCompat="@drawable/imagepadrao" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="76dp"
@@ -26,28 +38,28 @@
         android:id="@+id/inputContactAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="15dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/endere_o"
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="@+id/inputContactName"
         app:layout_constraintStart_toStartOf="@+id/inputContactName"
-        app:layout_constraintTop_toBottomOf="@+id/inputContactName"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/inputContactName" />
 
     <EditText
         android:id="@+id/inputContactPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="15dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="@+id/inputContactAddress"
         app:layout_constraintStart_toStartOf="@+id/inputContactAddress"
-        app:layout_constraintTop_toBottomOf="@+id/inputContactAddress"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/inputContactAddress" />
 
     <TextView
         android:id="@+id/textView3"
@@ -95,21 +107,21 @@
         android:id="@+id/inputContactName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="52dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/nome"
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleContact"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/imageContact" />
 
     <Spinner
         android:id="@+id/SpinnerContactType"
         android:layout_width="195dp"
         android:layout_height="46dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="15dp"
         android:entries="@array/array_types"
         app:layout_constraintEnd_toEndOf="@+id/inputContactPhone"
         app:layout_constraintStart_toStartOf="@+id/inputContactPhone"
@@ -119,14 +131,14 @@
         android:id="@+id/buttonSaveContact"
         android:layout_width="258dp"
         android:layout_height="46dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:background="#00BCD4"
         android:onClick="SaveContact"
         android:text="@string/salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SpinnerContactType" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPhoto" />
 
     <TextView
         android:id="@+id/titleContact"
@@ -139,5 +151,17 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonPhoto"
+        android:layout_width="169dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#A3D0D6"
+        android:onClick="buttonCameraClicked"
+        android:text="@string/foto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerContactType" />
 
 </android.support.constraint.ConstraintLayout>
