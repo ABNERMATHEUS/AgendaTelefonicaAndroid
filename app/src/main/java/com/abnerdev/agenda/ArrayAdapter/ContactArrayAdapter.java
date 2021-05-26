@@ -1,6 +1,11 @@
 package com.abnerdev.agenda.ArrayAdapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -55,6 +60,12 @@ public class ContactArrayAdapter extends RecyclerView.Adapter<ContactArrayAdapte
         if(contact.getImage()!= null){
             File file = new File(contact.getImage());
             viewHolder.imageView.setImageURI(Uri.fromFile(file));
+
+            //Aplicando escala cinza
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            viewHolder.imageView.setColorFilter(filter);
         }
 
     }
